@@ -141,6 +141,13 @@ background-color:#f4f4f4;
 	font-size:90%;
 }
 
+.entry{
+line-height: 1.618;
+color: #686868;
+font-family: 'Arial', sans-serif;
+text-align: justify;
+}
+
 /*footer*/
      
 #pie{
@@ -290,6 +297,21 @@ h1 {
     //margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 	    font-size:252%;
+		overflow:hidden;
+		display:none;
+}
+.app3 {
+   
+    position:absolute;             /* position in the center of the screen */
+    left:5%;
+    top:29%;
+    height:59%;                   /* text area height */
+    width:90%;                   /* text area width */
+    text-align:center;
+    //padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    //margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+	   // font-size:252%;
 		overflow:hidden;
 		display:none;
 }

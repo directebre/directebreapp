@@ -5,7 +5,7 @@ function pushRegister() {
 	{ 
         pushNotification = window.plugins.pushNotification;
 		
-        pushNotification.register(successHandler, errorHandler, {"senderID":"501743837356","ecb":"onNotificationGCM"});		// required!		
+        pushNotification.register(successHandler, errorHandler, {"senderID":"668871680869","ecb":"onNotificationGCM"});		// required!		
     }
 	catch(err) 
 	{ 
