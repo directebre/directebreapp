@@ -308,12 +308,8 @@ h1 {
     height:59%;                   /* text area height */
     width:90%;                   /* text area width */
     text-align:center;
-    //padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    //margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
-	   // font-size:252%;
-		overflow:hidden;
-		display:none;
+	overflow:hidden;
+	display:none;
 }
 .iScrollHover {
 	background:#444 !important;
@@ -326,6 +322,14 @@ h1 {
 	top:5%; bottom:5%; left:0;
 	width:100%;
 	background:#aaa;
+	overflow:auto;
+}
+#wrapper3 {
+	height:100%;
+	position:absolute; z-index:1;
+	top:5%; bottom:5%; left:0;
+	width:100%;
+	font-size:120%;
 	overflow:auto;
 }
 

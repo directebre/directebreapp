@@ -52,7 +52,7 @@ function querySuccessMessages(tx, results) // inicialitza la taula MESSAGES
 		if(len==0){
 			tx.executeSql('INSERT INTO MESSAGES (id, data) VALUES (0, "Benvingut a DirectEbre!")' );
 		}
-		alert("messages initialized");
+		//alert("messages initialized");
 		putMessages();
 }
 function querySuccessMessagesInsert(tx, results) // inicialitza la taula MESSAGES

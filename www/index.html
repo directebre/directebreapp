@@ -77,8 +77,8 @@
 			document.addEventListener('deviceready', onDeviceReady, true);
 			
 			function webViewSend(){
-				//document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
-				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				//document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
 				document.getElementById("dynForm").submit();
 			}
 
@@ -164,6 +164,8 @@
 		 </div>
 		 
 		 <div class="app3">
+		 			<div id="wrapper3">
+				<div id="scroller">
 			 <section class="entry">
 									<p>DirectEbre és una SCP formada per persones procedents de 2 àmbits:<br />
 			• <strong>Pagesos compromesos amb la terra i que ens agrada el que fem</strong>. Cansats de cobrar preus ínfims que no permeten ni tant sols cobrir costos (les mandarines de la temporada 2012/2013 ens les van liquidar a 17 cèntims d&#8217;euro el quilo!!) quan els consumidors paguen preus 10 vegades superiors.<br />
@@ -178,6 +180,8 @@
 			<p>Benvinguts</p>
 			<p>&nbsp;</p>
 								</section><!-- /.entry -->
+												</div>
+			</div>
 		 </div>
 		 
 		 
