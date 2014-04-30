@@ -60,13 +60,13 @@ function querySuccessMessagesInsert(tx, results) // inicialitza la taula MESSAGE
 		var len = results.rows.length;
 		len = len+1;
 		tx.executeSql('INSERT INTO MESSAGES (id, data) VALUES ('+len+',"' + message + '")' );
-		alert("messages saved");
+		//alert("messages saved");
 		putMessages();
 }
 function querySuccessMessagesPut(tx, results) // inicialitza la taula MESSAGES
 {
 		var len = results.rows.length;
-		alert("len mes: " + len );
+		//alert("len mes: " + len );
 		
 		if(len>4){
 			for (var i=len-1; i>=len-5; i--){

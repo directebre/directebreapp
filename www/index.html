@@ -24,7 +24,7 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>MyumTest1</title>
+        <title>DirectEbre</title>
     </head>
     <body>
 	    <script type="text/javascript" src="phonegap.js"></script>
@@ -77,15 +77,15 @@
 			document.addEventListener('deviceready', onDeviceReady, true);
 			
 			function webViewSend(){
-				document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				//document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
 				document.getElementById("dynForm").submit();
 			}
 
 			function loaded() {
 				pullUpEl = document.getElementById('pullUp');	
 
-				pullUpEl.className = 'loading';
-				//pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Carregant...';				
+				pullUpEl.className = 'loading';			
 			}
 			
 			function putUsrMail(){
@@ -107,31 +107,13 @@
 				obj.style.background="#899999";				
 			}	
 			function mDown(obj){
-				//$(obj).css("background","#ff0000");
 				$(obj).css("box-shadow","1px 1px 5px 5px #99a9a9 inset");
 			}
 			$(document).ready(function(){
 				$("button").click(function(){
-					//webViewSend();
-					//$(this).css("background","#ff0000");
 					MAIL = $("#usrMailInput").val();
-					//alert(MAIL);
 					if(MAIL == ""){
-						
-						//checkMail();
-						//loaded();
-									/*	loading = document.getElementById("pullUp");
-										usrInput = document.getElementById("usrMailInput");
-										loading.style.visibility='hidden';*/
-						var i = 0;
-						var max = 5000000; 
-						for(i;i<max;++i){
-											
-						}
-						if(i >= max ){
-							$(this).css("box-shadow","10px 10px 5px #888888");
-							$(":text").css("background-color","#D94A38");
-							}
+						$(":text").css("background-color","#D94A38");
 					}
 					else{
 						loading.style.visibility='visible';
@@ -144,7 +126,6 @@
 						insertMail();
 						pushRegister();
 						checkMail();
-						//webViewSend();
 						setTimeout(function(){webViewSend();}, 1050); 
 						
 						}
@@ -206,7 +187,7 @@
 			<ul>
 				<li id="leftFoot" onclick="menu1(this)">Inici</li>
 				<li id="middleFoot" onclick="menu2(this)">Notificacions</li>
-				<li id="rightFoot" onclick="menu3(this)">Informacio</li>
+				<li id="rightFoot" onclick="menu3(this)">Informació</li>
 			</ul>
 		</div>
 		 
