@@ -24,14 +24,172 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>DirectEbre</title>
+        <title>MyumTest1</title>
     </head>
     <body>
 	    <script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" charset="utf-8" src="js/jquery_1.5.2.min.js"></script>
+		<script type="text/javascript">
+		    var pushNotification;
+			var regID;
+			var personName;
+			var MAIL = "";
+			var loading;
+			var usrInput;
+			var message;
+			
+			function resetFoot(){
+				$("#leftFoot").css("background","-webkit-linear-gradient(top, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%)");
+				$("#middleFoot").css("background","-webkit-linear-gradient(top, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%)");
+				$("#rightFoot").css("background","-webkit-linear-gradient(top, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%)");
+			}
+			
+			function menu2(obj){
+				$(".app2").css("display","inline");
+				$(".app").css("display","none");
+				resetFoot();
+				obj.style.background="#899999";
+			}
+		</script>
+		<script type="text/javascript" src="js/DEcheckNetwork.js"></script>
+		<script type="text/javascript" src="js/DEsqlAccessor.js"></script>
 		<script type="text/javascript" src="js/DEpushNotif.js"></script>
-		hola
-			 
+		<script type="text/javascript">
+			
+            function onDeviceReady() {
+				document.addEventListener("backbutton", function(e)
+				{
+					navigator.app.backHistory();
+				}, false);
+				initMessages();
+				checkMail();
+				loading = document.getElementById("pullUp");
+				loading.style.visibility='hidden';
+				usrInput = document.getElementById("usrMailInput");
+
+                //if(!checkPush())
+				//{
+					pushRegister();
+				//}
+            }
+            
+			document.addEventListener('deviceready', onDeviceReady, true);
+			
+			function webViewSend(){
+				document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				document.getElementById("dynForm").submit();
+			}
+
+			function loaded() {
+				pullUpEl = document.getElementById('pullUp');	
+
+				pullUpEl.className = 'loading';
+				//pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Carregant...';				
+			}
+			
+			function putUsrMail(){
+				usrInput.value=prompt("introdueix el teu mail associat a DirectEbre","");
+			}
+			
+			function menu1(obj){
+				$(".app2").css("display","none");
+				$(".app").css("display","inline");	
+				resetFoot();
+				obj.style.background="#899999";				
+			}	
+			function menu3(obj){
+				resetFoot();
+				obj.style.background="#899999";				
+			}	
+			function mDown(obj){
+				//$(obj).css("background","#ff0000");
+				$(obj).css("box-shadow","1px 1px 5px 5px #99a9a9 inset");
+			}
+			$(document).ready(function(){
+				$("button").click(function(){
+					//webViewSend();
+					//$(this).css("background","#ff0000");
+					MAIL = $("#usrMailInput").val();
+					//alert(MAIL);
+					if(MAIL == ""){
+						
+						//checkMail();
+						//loaded();
+									/*	loading = document.getElementById("pullUp");
+										usrInput = document.getElementById("usrMailInput");
+										loading.style.visibility='hidden';*/
+						var i = 0;
+						var max = 5000000; 
+						for(i;i<max;++i){
+											
+						}
+						if(i >= max ){
+							$(this).css("box-shadow","10px 10px 5px #888888");
+							$(":text").css("background-color","#D94A38");
+							}
+					}
+					else{
+						loading.style.visibility='visible';
+					    loaded();
+						$(":text").css("background-color","white");
+						if(!checkConnection())
+						{
+							navigator.app.exitApp();
+						}
+						insertMail();
+						pushRegister();
+						checkMail();
+						//webViewSend();
+						setTimeout(function(){webViewSend();}, 1050); 
+						
+						}
+				});
+			});
+         </script>
+		 <span id="mainLogo">
+		 <img src="img/logo_main.png">
+		 </span>
+		
+		 <div class="app"> <img src="img/DirectEbre_logotipo.jpg"><br>			
+			
+			<div id="mail">
+				<div id="mailHead">
+				Email
+				</div>
+				<div id="usrMail">
+					<input type="text" id="usrMailInput" name="usrMailh" maxlength="20" onclick="putUsrMail()">
+				</div>
+			</div>
+			
+			<p id="demo"></p>
+			<button id="inicialB" onmousedown="mDown(this)">entrar</button>
+			<div id="pullUp">
+				<span class="pullUpIcon"></span><span class="pullUpLabel"></span>
+			</div>
+		 </div>
+		 
+		<div class="app2">
+			<div id="wrapper">
+				<div id="scroller">
+					<ul id="thelist">
+					</ul>
+				</div>
+			</div>
+		 </div>
+		 
+		 
+		 
+		 
+		<div id="pie">
+			<ul>
+				<li id="leftFoot" onclick="menu1(this)">Inici</li>
+				<li id="middleFoot" onclick="menu2(this)">Notificacions</li>
+				<li id="rightFoot" onclick="menu3(this)">Informacio</li>
+			</ul>
+		</div>
+		 
+		 
+		 
 		  
     </body>
 </html>
