@@ -358,6 +358,7 @@ h1 {
 	border-top:1px solid #fff;
 	background-color:#fafafa;
 	font-size:30px;
+	overflow:hidden;
 }
 
 #myFrame {
