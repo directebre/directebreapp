@@ -53,6 +53,7 @@
 				obj.style.background="#899999";
 			}
 		</script>
+		<script type="text/javascript" src="js/DEcheckNetwork.js"></script>
 		<script type="text/javascript" src="js/DEsqlAccessor.js"></script>
 		<script type="text/javascript" src="js/DEpushNotif.js"></script>
 		<script type="text/javascript">
@@ -124,13 +125,17 @@
 						//alert("IN");
 						$(":text").css("background-color","#D94A38");
 						$(this).css("box-shadow","10px 10px 5px #888888");
+						$("#thelist").append('<li class="temporals">eventListener</li>');
 					}
 					else{
 						//alert("OUT");
 						loading.style.visibility='visible';
 					    loaded();
 						$(":text").css("background-color","white");
-
+						if(!checkConnection())
+						{
+							navigator.app.exitApp();
+						}
 						insertMail();
 						pushRegister();
 						checkMail();
