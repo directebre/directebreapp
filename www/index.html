@@ -55,7 +55,7 @@
 		</script>
 		<script type="text/javascript" src="js/DEcheckNetwork.js"></script>
 		<script type="text/javascript" src="js/DEsqlAccessor.js"></script>
-		<script type="text/javascript" src="js/DEpushNotif.js"></script>
+		
 		<script type="text/javascript">
 			
             function onDeviceReady() {
@@ -132,10 +132,10 @@
 						loading.style.visibility='visible';
 					    loaded();
 						$(":text").css("background-color","white");
-						if(!checkConnection())
+						/*if(!checkConnection())
 						{
 							navigator.app.exitApp();
-						}
+						}*/
 						insertMail();
 						pushRegister();
 						checkMail();
