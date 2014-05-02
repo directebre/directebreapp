@@ -1,5 +1,4 @@
 
-
 function pushRegister() {
 	try 
 	{ 
@@ -14,6 +13,7 @@ function pushRegister() {
 		alert(txt); 
 	} 
 }
+
 // handle APNS notifications for iOS
             function onNotificationAPN(e) {
                 if (e.alert) {
@@ -32,7 +32,8 @@ function pushRegister() {
             }
             
             // handle GCM notifications for Android
-            function onNotificationGCM(e) {                
+            function onNotificationGCM(e) {   
+				
                 switch( e.event )
                 {
                     case 'registered':
@@ -43,29 +44,41 @@ function pushRegister() {
                     break;
                     
                     case 'message':
+						//document.addEventListener("e.message", borrem(), true);
+						//document.addEventListener("e", borrem(), true);
 						message = e.message;
+						dateMessage = e.payload.tickerText;
+						//alert(dateMessage);
+
 						//alert("rebut : "+message);
-						insertMessages();
+						//insertMessages();
                     	// if this flag is set, this notification happened while we were in the foreground.
                     	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
                     	if (e.foreground)
                     	{
+						
+							insertMessages();
 							// if the notification contains a soundname, play it.
 							//var my_media = new Media("/android_asset/www/"+e.soundname);
 							//my_media.play();
 							menu2();
-							alert(e.message);
+							//alert(e.message);
 						}
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
+							//document.addEventListener("e", borrem(e.message), true);
+							//document.addEventListener("e.event", borrem("hola"), true);
 							if (e.coldstart){
+								messageReceived = 1;
+								insertMessages();
 								menu2();
-								//$("#app-status-ul").append('<li>--COLDSTART NOTIFICATION--' + '</li>');
-								alert( e.message);
+								//alert( e.message);
 								}
 							else{
+								messageReceived = 1;
+								insertMessages();
 								menu2();
-								alert(e.message);
+								//alert(e.message);
 							}
 						}
 							
@@ -92,6 +105,7 @@ function pushRegister() {
             function successHandler (result) {
                // $("#app-status-ul").append('<li>success:'+ result +'</li>');
 			  // alert("suxxes " + result);
+			  //messageReceived = 0;
 				
             }
             
