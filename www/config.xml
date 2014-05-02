@@ -98,7 +98,6 @@
         Otherwise, you can specify specific domains:
     -->
 	<gap:plugin name="com.phonegap.plugins.pushplugin"/>
-	<gap:plugin name="org.apache.cordova.network-information"/>
 	<plugin name="Storage" value="org.apache.cordova.Storage" />
     <access origin="*"/> <!-- allow local pages -->
     <!--
