@@ -1,22 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
@@ -60,7 +43,6 @@
 		<script type="text/javascript" src="js/DEsqlAccessor.js"></script>
 		<script type="text/javascript" src="js/DEpushNotif.js"></script>
 		<script type="text/javascript">
-			//lastMessage(); // posa a lastMessageSql l'ultium messatge desat
             function onDeviceReady() {
 				document.addEventListener("backbutton", function(e)
 				{
@@ -80,15 +62,12 @@
 					//lastMessage() -> lastMessageSql = últim missatge desat i dona pas a checkEarlierMessages()
 					//checkEarlierMessages() -> comunicacio ajax x coneixer lultim misatge enviat i actualitzarlo si es necessari
 				}
-				//alert("deviceReady5");
-				//alert(lastMessageSql);
             }
             
 			document.addEventListener('deviceready', onDeviceReady, true);
 			
 			function webViewSend(){
-				//document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
-				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat/app" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
 				document.getElementById("dynForm").submit();
 			}
 
@@ -126,17 +105,11 @@
 			$(document).ready(function(){
 				$("button").click(function(){
 					MAIL = $("#usrMailInput").val();
-					//alert(MAIL);
 					if(MAIL == ""){
-						//alert("IN");
 						$(":text").css("background-color","#D94A38");
 						$(this).css("box-shadow","10px 10px 5px #888888");
-						//alert(JSON.stringify(pushNotification));
-						//kika = onNotificationAPN();
-						//alert(JSON.stringify(kika));
 					}
 					else{
-						//alert("OUT");
 						loading.style.visibility='visible';
 					    loaded();
 						$(":text").css("background-color","white");
@@ -147,13 +120,9 @@
 						insertMail();
 						checkMail();
 						setTimeout(function(){webViewSend();}, 1050); 
-						
 						}
 				});
 			});
-			
-			
-			
          </script>
 		 <span id="mainLogo">
 		 <img src="img/logo_main.png">
@@ -177,9 +146,6 @@
 		 </div>
 		 
 		<div class="app2">
-		<script type="text/javascript">
-		//checkEarlierMessages();
-		</script>
 			<div id="wrapper">
 				<div id="scroller">
 					<ul id="thelist">
@@ -208,9 +174,6 @@
 												</div>
 			</div>
 		 </div>
-		 
-		 <!--<button type="button" onclick="loadXMLDoc()">Request data</button> -->
-		 
 		
 		<div id="pie">
 			<ul>
@@ -219,9 +182,6 @@
 				<li id="rightFoot" onclick="menu3(this)">Informació</li>
 			</ul>
 		</div>
-		 
-		 
-		 
 		  
     </body>
 </html>

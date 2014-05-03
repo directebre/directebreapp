@@ -13,38 +13,27 @@
 			  {
 			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
 				{
-				//messageServer=xmlhttp.responseText;
-				//document.getElementById("myDiv").innerHTML = messageServer;
 				serverM = xmlhttp.responseText;
-				//alert(serverM);
 				serverM2 = JSON.parse(serverM);
-				//alert("SERVER AJAX JSON: "+serverM2.dated + "   " + serverM2.mess);
 				}
 			}
-			xmlhttp.open("GET","http://www.myum.cat/get/",false);
+			xmlhttp.open("GET","http://www.directebre.cat/app_lastmessage/",false);
 			xmlhttp.send();
 				return serverM2;
 			}
-
 function checkEarlierMessages()
 {
 	
 	messageServer = loadXMLDoc();
-	//alert("començem");
-	//lastMessage();
-	//alert("lastM: " + lastMessageSql + " NEW: dateMessage: " + messageServer.dated+  "  --server: " + messageServer.mess);
 	if (lastMessageSql != messageServer.mess){
-		//alert("messages diferentes");
 		dateMessage = messageServer.dated;
 		message = messageServer.mess;
 		insertMessages();
 	}
 	else{
-		//alert("messages iguales");
 		putMessages();
 	}
 }
-
 
 function pushRegister() {
 	try 
@@ -92,12 +81,7 @@ function pushRegister() {
 
 						message = e.message;
 						dateMessage = e.payload.tickerText;
-						//alert(dateMessage);
 
-						//alert("rebut : "+message);
-						//insertMessages();
-                    	// if this flag is set, this notification happened while we were in the foreground.
-                    	// you might want to play a sound to get the user's attention, throw up a dialog, etc.
                     	if (e.foreground)
                     	{
 						
@@ -106,7 +90,6 @@ function pushRegister() {
 							//var my_media = new Media("/android_asset/www/"+e.soundname);
 							//my_media.play();
 							menu2();
-							//alert(e.message);
 						}
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
@@ -114,17 +97,12 @@ function pushRegister() {
 								messageReceived = 1;
 								insertMessages2();
 								menu2();
-								//alert( e.message);
 								}
 							else{
 								insertMessages2();
 								menu2();
-								//alert(e.message);
 							}
 						}
-							
-					//	$("#app-status-ul").append('<li>MESSAGE -> MSG: ' + e.payload.message + '</li>');
-					//	$("#app-status-ul").append('<li>MESSAGE -> MSGCNT: ' + e.payload.msgcnt + '</li>');
                     break;
                     
                     case 'error':

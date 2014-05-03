@@ -7,6 +7,3 @@ function loaded() {
 	pullUpEl.querySelector('.pullUpLabel').innerHTML = 'Carregant...';				
 
 }
-
-
-//document.addEventListener('DOMContentLoaded', function () { setTimeout(loaded, 200); }, false);
