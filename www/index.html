@@ -87,8 +87,8 @@
 			document.addEventListener('deviceready', onDeviceReady, true);
 			
 			function webViewSend(){
-				document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
-				//document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				//document.body.innerHTML += '<form id="dynForm" action="http://www.myum.cat/test" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
+				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
 				document.getElementById("dynForm").submit();
 			}
 
