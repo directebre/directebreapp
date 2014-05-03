@@ -1,4 +1,51 @@
 
+			function loadXMLDoc()
+			{
+			var xmlhttp;
+			var serverM;
+			var serverM2;
+			if (window.XMLHttpRequest)
+			  {// code for IE7+, Firefox, Chrome, Opera, Safari
+			  xmlhttp=new XMLHttpRequest();
+			  }
+
+			xmlhttp.onreadystatechange=function()
+			  {
+			  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+				//messageServer=xmlhttp.responseText;
+				//document.getElementById("myDiv").innerHTML = messageServer;
+				serverM = xmlhttp.responseText;
+				//alert(serverM);
+				serverM2 = JSON.parse(serverM);
+				//alert("SERVER AJAX JSON: "+serverM2.dated + "   " + serverM2.mess);
+				}
+			}
+			xmlhttp.open("GET","http://www.myum.cat/get/",false);
+			xmlhttp.send();
+				return serverM2;
+			}
+
+function checkEarlierMessages()
+{
+	
+	messageServer = loadXMLDoc();
+	//alert("començem");
+	//lastMessage();
+	//alert("lastM: " + lastMessageSql + " NEW: dateMessage: " + messageServer.dated+  "  --server: " + messageServer.mess);
+	if (lastMessageSql != messageServer.mess){
+		//alert("messages diferentes");
+		dateMessage = messageServer.dated;
+		message = messageServer.mess;
+		insertMessages();
+	}
+	else{
+		//alert("messages iguales");
+		putMessages();
+	}
+}
+
+
 function pushRegister() {
 	try 
 	{ 
@@ -13,7 +60,6 @@ function pushRegister() {
 		alert(txt); 
 	} 
 }
-
 // handle APNS notifications for iOS
             function onNotificationAPN(e) {
                 if (e.alert) {
@@ -32,8 +78,7 @@ function pushRegister() {
             }
             
             // handle GCM notifications for Android
-            function onNotificationGCM(e) {   
-				
+            function onNotificationGCM(e) {   	
                 switch( e.event )
                 {
                     case 'registered':
@@ -44,8 +89,7 @@ function pushRegister() {
                     break;
                     
                     case 'message':
-						//document.addEventListener("e.message", borrem(), true);
-						//document.addEventListener("e", borrem(), true);
+
 						message = e.message;
 						dateMessage = e.payload.tickerText;
 						//alert(dateMessage);
@@ -66,17 +110,14 @@ function pushRegister() {
 						}
 						else
 						{	// otherwise we were launched because the user touched a notification in the notification tray.
-							//document.addEventListener("e", borrem(e.message), true);
-							//document.addEventListener("e.event", borrem("hola"), true);
 							if (e.coldstart){
 								messageReceived = 1;
-								insertMessages();
+								insertMessages2();
 								menu2();
 								//alert( e.message);
 								}
 							else{
-								messageReceived = 1;
-								insertMessages();
+								insertMessages2();
 								menu2();
 								//alert(e.message);
 							}
@@ -105,7 +146,6 @@ function pushRegister() {
             function successHandler (result) {
                // $("#app-status-ul").append('<li>success:'+ result +'</li>');
 			  // alert("suxxes " + result);
-			  //messageReceived = 0;
 				
             }
             

@@ -15,15 +15,23 @@ function queryDBmessagesInsert(tx)
 {			
 	tx.executeSql('SELECT * FROM MESSAGES', [], querySuccessMessagesInsert, errorCB);
 }
+function queryDBmessagesInsert2(tx)
+{			  
+	tx.executeSql('SELECT data FROM MESSAGES WHERE id = (SELECT MAX(id) FROM MESSAGES)', [], querySuccessMessagesInsert2, errorCB);
+}
 function queryDBmessagesPut(tx)
 {			
 	tx.executeSql('SELECT * FROM MESSAGES', [], querySuccessMessagesPut, errorCB);
+}
+function queryDBlastMessage(tx)
+{
+//alert("inside2");
+	tx.executeSql('SELECT data FROM MESSAGES WHERE id = (SELECT MAX(id) FROM MESSAGES)', [], querySuccessLastMessage, errorCB);
 }
 
 function querySuccess(tx, results) 
 {
 	var len = results.rows.length;
-	//alert(len);
 	if ((len==1)&&(results.rows.item(0).data != MAIL))
 	{
 		tx.executeSql('UPDATE DEMO SET data="'+MAIL+'"WHERE id=1' );
@@ -54,7 +62,7 @@ function querySuccessMessages(tx, results) // inicialitza la taula MESSAGES
 			//putMessages();
 		}
 		//alert("messages initialized");
-		putMessages();
+		//putMessages();
 		
 }
 function querySuccessMessagesInsert(tx, results) // inicialitza la taula MESSAGES
@@ -63,7 +71,20 @@ function querySuccessMessagesInsert(tx, results) // inicialitza la taula MESSAGE
 		len = len+1;
 		tx.executeSql('INSERT INTO MESSAGES (id, data, date) VALUES ('+len+',"' + message + '" , "' + dateMessage +'")' );
 		//alert("messages saved");
-		putMessages();
+		putMessages(); // els escriu a app2
+}
+function querySuccessMessagesInsert2(tx, results) // inicialitza la taula MESSAGES
+{
+		var mis = results.rows.item(0).data;
+	
+		//alert("last message: " + mis + " and message: " + message);
+		
+		if(mis != message){
+			insertMessages();
+		}
+		else{
+			putMessages(); // els escriu a app2
+		}
 }
 function showMessage(obj)
 {
@@ -89,6 +110,15 @@ function querySuccessMessagesPut(tx, results) //
 			}
 		}
 }
+function querySuccessLastMessage(tx, results) // 
+{
+	//alert("inside3");
+		var len = results.rows.length;
+		//alert("last message: "+ results.rows.item(0).data);
+		lastMessageSql = results.rows.item(0).data;
+		//alert("lastm() finished" + lastMessageSql);
+		checkEarlierMessages();
+}
 		
 function populateDB(tx)
 {
@@ -101,6 +131,7 @@ function populateDBmessages(tx)
 {
 	//tx.executeSql('DROP TABLE IF EXISTS DEMO');
     tx.executeSql('CREATE TABLE IF NOT EXISTS MESSAGES (id unique, data, date)');
+	//alert("table messages created");
 }
 				
 function errorCB(tx, err)
@@ -122,16 +153,30 @@ function successCBmessages() {
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
     //alert("success3!" );
 	db.transaction(queryDBmessages, errorCB);
+	lastMessage();
 }
-function insertMessages() {
+function insertMessages() { // inserta de veritat
 	$(".tempo").remove();
 	$("li.temporals").remove();
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBmessagesInsert, errorCB);
 }
-function putMessages() {
+function insertMessages2() { // fake que inserta segons si la ultima entrada es igual a la rebuda per notificacio
+	$(".tempo").remove();
+	$("li.temporals").remove();
+	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
+	db.transaction(queryDBmessagesInsert2, errorCB);
+}
+function putMessages() {// els escriu a app2
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBmessagesPut, errorCB);
+}
+function lastMessage() {// 
+	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
+	//alert("LAST MESSAGE");
+	db.transaction(queryDBlastMessage, errorCB);
+	//alert("LAST MESSAGE2");
+	//checkEarlierMessages();
 }
 
 /////
@@ -148,6 +193,7 @@ function insertMail()
 function initMessages()
 {
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000);
+	//alert("init messages");
 	db.transaction(populateDBmessages, errorCB, successCBmessages);	
 }
 ////////////////////////////////////////////////
