@@ -23,6 +23,7 @@
 			var messageReceived = 0;
 			var messageServer = "";
 			var lastMessageSql = "";
+			var isOnline = 0;
 
 			function resetFoot(){
 				$("#leftFoot").css("background","-webkit-linear-gradient(top, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%)");
@@ -48,6 +49,7 @@
 				{
 					navigator.app.backHistory();
 				}, false);
+				
 
 				checkMail(); // crea taula i posa el mail al input text
 				loading = document.getElementById("pullUp");
@@ -57,6 +59,12 @@
 				//{
 					pushRegister();	// registre el mobil al servei
 				//}
+				
+				if(checkConnection(1))
+				{
+					isOnline = 1;
+				
+				}
 				if(messageReceived == 0){	// si s'entra obrin la app, no desde tapping la notificacio
 					initMessages(); // crea taula, introdueix "benvingu a de" i dona pas a lastMessage() 
 					//lastMessage() -> lastMessageSql = últim missatge desat i dona pas a checkEarlierMessages()
@@ -113,7 +121,7 @@
 						loading.style.visibility='visible';
 					    loaded();
 						$(":text").css("background-color","white");
-						if(!checkConnection())
+						if(!checkConnection(0))
 						{
 							navigator.app.exitApp();
 						}

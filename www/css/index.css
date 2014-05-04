@@ -329,7 +329,7 @@ h1 {
 	position:absolute; z-index:1;
 	top:5%; bottom:5%; left:0;
 	width:100%;
-	font-size:140%;
+	font-size:170%;
 	overflow:auto;
 }
 
@@ -357,10 +357,12 @@ h1 {
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-color:#fafafa;
-	font-size:30px;
+	font-size:33px;
 	overflow:hidden;
 }
-
+.tempo{
+	text-align:left;
+}
 #myFrame {
 	position:absolute;
 	top:0; left:0;

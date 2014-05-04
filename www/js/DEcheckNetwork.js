@@ -1,6 +1,6 @@
 
 
-function checkConnection() {
+function checkConnection(flag) {
     var networkState = navigator.connection.type;
 
     var states = {};
@@ -14,10 +14,19 @@ function checkConnection() {
     states[Connection.NONE]     = 'No network connection';
 
     //alert('Connection type: ' + states[networkState]);
-	if((states[networkState] ==  states[Connection.NONE])
-		|| (states[networkState] ==  states[Connection.UNKNOWN])){
-		alert('Aquesta aplicació requereix l\'ús d\'internet,<br>sisplau, torna-ho a intentar més tard');
-		return false;
+	if( flag == 0 ){
+		if((states[networkState] ==  states[Connection.NONE])
+			|| (states[networkState] ==  states[Connection.UNKNOWN])){
+			alert('Aquesta aplicació requereix l\'ús d\'internet,\nsisplau, torna-ho a intentar més tard');
+			return false;
+		}
+		return true;
 	}
-	return true;
+	else{
+		if((states[networkState] ==  states[Connection.NONE])
+			|| (states[networkState] ==  states[Connection.UNKNOWN])){
+			return false;
+		}
+		return true;
+	}
 }
