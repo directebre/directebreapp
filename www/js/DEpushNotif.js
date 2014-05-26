@@ -25,7 +25,10 @@ function checkEarlierMessages()
 {
 	
 	messageServer = loadXMLDoc();
+	//alert("lastmessageSql"+lastMessageSql);
+	//alert("messageServer"+messageServer.mess);
 	if (lastMessageSql != messageServer.mess){
+
 		dateMessage = messageServer.dated;
 		message = messageServer.mess;
 		insertMessages();

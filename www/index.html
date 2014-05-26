@@ -44,13 +44,11 @@
 		<script type="text/javascript" src="js/DEsqlAccessor.js"></script>
 		<script type="text/javascript" src="js/DEpushNotif.js"></script>
 		<script type="text/javascript">
+		     function onDeviceResume() {
+				lastMessage();			 
+			 }
             function onDeviceReady() {
-				document.addEventListener("backbutton", function(e)
-				{
-					navigator.app.backHistory();
-				}, false);
-				
-
+				document.addEventListener("resume", onDeviceResume, false);
 				checkMail(); // crea taula i posa el mail al input text
 				loading = document.getElementById("pullUp");
 				loading.style.visibility='hidden';
@@ -72,7 +70,6 @@
 				}
             }
             
-			document.addEventListener('deviceready', onDeviceReady, true);
 			
 			function webViewSend(){
 				document.body.innerHTML += '<form id="dynForm" action="http://www.directebre.cat/app" method="post"><input type="hidden" name="regid" value="' + regID + '"><input type="hidden" name="personMail" value="' + MAIL + '"></form>';
@@ -131,6 +128,8 @@
 						}
 				});
 			});
+						document.addEventListener('deviceready', onDeviceReady, true);
+						
          </script>
 				 <div id="mainLogo">
 		 <img src="img/logo_main.png">
