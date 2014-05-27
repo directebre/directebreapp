@@ -128,7 +128,6 @@ function errorCB(tx, err)
 }
 function errorSecondRow(tx, results) // 
 {
-alert("JJJ");	
 	penLastMessage = "";
 }
 				
