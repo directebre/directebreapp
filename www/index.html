@@ -23,7 +23,9 @@
 			var messageReceived = 0;
 			var messageServer = "";
 			var lastMessageSql = "";
+			var penLastMessageSql = "";
 			var isOnline = 0;
+			//var numberOfRegisters = 0;
 
 			function resetFoot(){
 				$("#leftFoot").css("background","-webkit-linear-gradient(top, rgba(60,60,60,1) 0%, rgba(0,0,0,1) 100%)");
@@ -61,12 +63,9 @@
 				if(checkConnection(1))
 				{
 					isOnline = 1;
-				
 				}
 				if(messageReceived == 0){	// si s'entra obrin la app, no desde tapping la notificacio
 					initMessages(); // crea taula, introdueix "benvingu a de" i dona pas a lastMessage() 
-					//lastMessage() -> lastMessageSql = últim missatge desat i dona pas a checkEarlierMessages()
-					//checkEarlierMessages() -> comunicacio ajax x coneixer lultim misatge enviat i actualitzarlo si es necessari
 				}
             }
             

@@ -27,6 +27,10 @@ function queryDBlastMessage(tx)
 {
 	tx.executeSql('SELECT data FROM MESSAGES WHERE id = (SELECT MAX(id) FROM MESSAGES)', [], querySuccessLastMessage, errorCB);
 }
+function queryDBpenLastMessage(tx)
+{
+	tx.executeSql('SELECT data FROM MESSAGES ORDER BY id DESC', [], querySuccessPenLastMessage, errorSecondRow);
+}
 
 function querySuccess(tx, results) 
 {
@@ -80,6 +84,8 @@ function showMessage(obj)
 }
 function querySuccessMessagesPut(tx, results) // 
 {
+	$(".tempo").remove();
+	$("li.temporals").remove();
 		var len = results.rows.length;		
 		if(len>4){
 			for (var i=len-1; i>=len-5; i--){
@@ -102,6 +108,10 @@ function querySuccessLastMessage(tx, results) //
 		lastMessageSql = results.rows.item(0).data;
 		checkEarlierMessages();
 }
+function querySuccessPenLastMessage(tx, results) // 
+{
+		penLastMessageSql = results.rows.item(1).data;
+}
 		
 function populateDB(tx)
 {
@@ -115,6 +125,11 @@ function populateDBmessages(tx)
 function errorCB(tx, err)
 {
     alert("Error processing SQL: "+err);
+}
+function errorSecondRow(tx, results) // 
+{
+alert("JJJ");	
+	penLastMessage = "";
 }
 				
 function successCB() {
@@ -130,6 +145,7 @@ function successCBmessages() {
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBmessages, errorCB);
 	if(isOnline == 1){
+		penLastMessage();
 		lastMessage();
 	}
 	else if (isOnline == 0){
@@ -137,14 +153,14 @@ function successCBmessages() {
 	}
 }
 function insertMessages() { // inserta de veritat
-	$(".tempo").remove();
-	$("li.temporals").remove();
+	/*$(".tempo").remove();
+	$("li.temporals").remove();*/
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBmessagesInsert, errorCB);
 }
 function insertMessages2() { // fake que inserta segons si la ultima entrada es igual a la rebuda per notificacio
-	$(".tempo").remove();
-	$("li.temporals").remove();
+	/*$(".tempo").remove();
+	$("li.temporals").remove();*/
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBmessagesInsert2, errorCB);
 }
@@ -155,6 +171,10 @@ function putMessages() {// els escriu a app2
 function lastMessage() {// 
 	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
 	db.transaction(queryDBlastMessage, errorCB);
+}
+function penLastMessage() {// 
+	var db = window.openDatabase("DirectEbreBBDD", "1.0", "DirectEbreBBDD", 2000)
+	db.transaction(queryDBpenLastMessage, errorSecondRow);
 }
 
 /////
